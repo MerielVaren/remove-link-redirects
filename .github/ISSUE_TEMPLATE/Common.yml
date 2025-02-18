@@ -1,0 +1,46 @@
+name: 脚本问题反馈
+description: 完整填写本模板以反馈你发现的问题，请在填写前确认其他issue是否提过
+title: "在此处填写网站名称+遇到的问题"
+type: "Bug"
+labels: ["priority:none"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **请在上方以一句话简短地概括你的问题作为标题**
+        > 请按下方的要求填写完整的问题表单，以便我们更快地解决你的问题
+
+  - type: dropdown
+    id: user-set-category
+    attributes:
+      label: 问题分类
+      description: 请根据情况设置
+      options:
+        - 这个网站之前没有，我希望支持该网站
+        - 这个网站之前有，现在出问题了
+        - 我不知道
+        - 其他问题（如 `README.md` 等）
+    validations:
+      required: true
+
+  - type: textarea
+    id: website-name
+    attributes:
+      label: 网站的名称是什么？
+    validations:
+      required: true
+
+  - type: textarea
+    id: website-link
+    attributes:
+      label: 出现问题的链接是什么？
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: check-final
+    attributes:
+      label: 最后一步
+      options:
+        - label: 我的填写无误并且该问题之前未被提及
+          required: true
