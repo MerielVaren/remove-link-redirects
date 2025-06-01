@@ -206,6 +206,15 @@
           );
         },
       },
+      {
+        name: "Pixiv 自动跳过跳转页面",
+        urlTest: /pixiv\.net\/jump\.php\?url=(.*)/,
+        resolveAutoJump: function (element) {
+          location.href = decodeURIComponent(
+            this.urlTest.exec(location.href)[1]
+          );
+        },
+      },
     ];
   }
 
@@ -1301,6 +1310,18 @@
         linkTest: true,
         onInit: function () {},
         resolveRedirect: function (element) {},
+      },
+      {
+        name: "Pixiv 页面中跳转链接替换",
+        urlTest: /pixiv\.net/,
+        linkTest: /pixiv\.net\/jump\.php\?url=(.*)/,
+        resolveRedirect: function (element) {
+             const urlParams = new URLSearchParams(new URL(element.href).search);
+             const targetUrl = urlParams.get("url");
+        if (targetUrl) {
+             RedirectApp.removeLinkRedirect(this, element, decodeURIComponent(targetUrl));
+        }
+        },
       },
     ];
   }
